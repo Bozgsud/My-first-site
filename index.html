@@ -1,0 +1,244 @@
+<html>
+<head>
+<style>
+  a {
+    text-decoration: none;
+    font-size: 20px;
+    margin-left: 5px;
+    margin-right: 5px;
+    transition-duration: 0.4s;
+    border: none;
+    padding: 12px 26px;
+    cursor: pointer;
+  }
+  .rfv{
+    background-color: black;
+    color: lightgrey;
+  }
+  .rfv:hover {
+    background-color: black;
+    color: white;
+  }
+  .tgb{
+    background-color: black;
+    color: lightgrey;
+  }
+  .tgb:hover {
+    background-color: black;
+    color: white;
+  }
+  .ikm{
+    background-color: black;
+    color: lightgrey;
+  }
+  .ikm:hover{
+    background-color: black;
+    color: white;
+  }
+  .iop {
+width: 100%;
+height: 90px;
+background-color: black;
+  }
+  .edc {
+    position: relative;
+    animation-name: example;
+    animation-duration: 6s;
+    animation-iteration-count: infinite;
+  }
+  @keyframes example {
+0%{left: 0px}
+50% {left: 85%}
+100%{left: 0px}
+
+  }
+  
+body{
+background-color: #000000;
+  color: white;
+}
+.main{
+  width: 100%;
+  height: 750px;
+}
+  .cube{
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      transform-style: preserve-3d;
+      vertical-align: middle
+    }
+.gran{
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border: 1px black;
+  opacity: 0,9;
+}
+.front{
+  background-color: white;
+  transform: translateZ(25px);
+}
+.back{
+  background-color: white;
+  transform: translateZ(-25px);
+}
+.right{
+  background-color: white;
+  left: 25px;
+  transform: rotateY(90deg);
+}
+.left{
+  background-color: white;
+  left: -25px;
+  transform: rotateY(90deg);
+}
+.top{
+  background-color: white;
+  bottom: 25px;
+  transform: rotateX(90deg);
+}
+.bottom{
+  background-color: white;
+  bottom: -25px;
+  transform: rotateX(90deg);
+}
+  .Minecraft{
+    margin-top: 575px
+  }
+  .futor{
+    width: 100%;
+    height: 200px;
+    background-color: grey;
+  }
+  .CubesBox{
+    justify-content: center;
+    align-items: center;
+  }
+</style>
+  
+  <title>
+    About Undertale
+  </title>
+</head>
+<body>
+ <center> <div class="iop">
+  <a class="rfv" href="index.html"> UNDERTALE? </a>
+<a class="tgb" href="index2.html"> ABOUT PLOT </a>
+<a class="ikm" href="index3.html"> CHARACTERS</a>
+</div> </center>
+  <p>
+    <center>
+   <img src= "https://cdn.akamai.steamstatic.com/steam/apps/391540/header.jpg?t=1579096091" height="250" width="650"/> 
+    </center>
+  </p>
+  <center>
+    <p>
+      <font size="10" color="red" face="comic Sans MS">What is the game?</font>
+    </p>
+  </center>
+    <center>
+    <p class="zxcvbnm">
+      <font size="5" face="comic Sans MS">Undertale - popular video game with millions of fans, game went famous because of gameplay, funny characters and uncommon style.
+
+      </font>
+      
+    </p>
+  </center> 
+  <div class="outer">
+  <img class="edc" src="Sansonbike.png" height="200" width="225">
+  </div> 
+  <div class="main" id="CubesBox">
+    <center>
+    <p class="Minecraft"> 
+      <font size="5" color="green" face="comic Sans MS"> OMG, MINECRAFT? </font>
+    </p>
+      
+      </center>
+<div class="cube" id="cube" onclick="MoveAllCubes()">
+  <div class="gran top">
+   <img height="50px" width="50px" src="kamen.png" />
+  </div> 
+  <div class="gran bottom">
+    <img  height="50px" width="50px" src="kamen.png"/>
+  </div> 
+  <div class="gran front">
+    <img height="50px" width="50px" src="kamen.png"/>
+  </div>
+  <div class="gran back">
+    <img height="50px" width="50px" src="kamen.png"/>
+  </div>
+  <div class="gran right">
+    <img height="50px" width="50px" src="kamen.png"/>
+  </div>
+  <div class="gran left">
+    <img height="50px" width="50px" src="kamen.png"/>
+  </div>
+  
+</div>
+    </div>
+  <script>
+    let trenie=0.55;
+let CubesBox= document.getElementById("CubesBox")
+let WindowWidth = window.innerWidth
+let WindowHeight = window.innerHeight
+let original = document.getElementById("cube")
+let CubeWidth=50;
+let StartCubePointX = WindowWidth/2 - CubeWidth*1.5
+let StartCubePointY = WindowHeight*1.6 +CubeWidth*1.5
+function copyCube(){
+  for(let i = 0; i < 9; i++){
+    copyCube = original.cloneNode(true);
+    copyCube.id = "cube" + i;
+    copyCube.style.left = StartCubePointX + CubeWidth*(i%3);
+    copyCube.style.top = StartCubePointY + CubeWidth*parseInt(i/3);
+    CubesBox.appendChild(copyCube);
+  }
+  original.style.display = "none"
+}
+    copyCube()
+function MoveAllCubes(){
+ for(let i = 0; i < 9; i++){
+   let cube1 = document.getElementById("cube" + i)
+   let speedX =  18*(1-i%3)
+   let speedY = 18*(1-parseInt(i/3))
+   let angle = 0;
+   let angleSpeed = 3;
+   let startX = cube1.offsetLeft;
+   let startY = cube1.offsetTop;
+   let crntX = cube1.offsetLeft;
+   let crntY = cube1.offsetTop;
+   move(cube1, speedX, speedY, startX, startY, crntX, crntY, angle, angleSpeed)
+ } 
+}
+
+function move(cube1, speedX, speedY, startX, startY, crntX, crntY, angle, angleSpeed){
+if(angleSpeed<0){
+return 0;
+}
+cube1.style.left = crntX + "px";
+crntX = crntX - speedX;
+cube1.style.top = crntY + "px";
+crntY = crntY - speedY;
+signX = 0
+signY = 0
+if(speedX != 0){
+signX = speedX/Math.abs(speedX)
+}
+if(speedY != 0){
+signY = speedY/Math.abs(speedY)
+}
+speedX = signX * (Math.abs(speedX) - trenie);
+speedY = signY * (Math.abs(speedY) - trenie);;
+angle += angleSpeed;
+angleSpeed -= trenie*0.17;
+cube1.style.transform = "rotateX("+ angle + "deg) rotateY("+ angle + "deg) rotateZ("+ angle + "deg)"
+setTimeout(function (){move(cube1, speedX, speedY, startX, startY, crntX, crntY, angle, angleSpeed)}, 20)
+}
+  </script>
+  <div class="futor"> 
+    <center>
+  <p> <font size="5" color="black" face="comic Sans MS"> Made by Ybyrai Amir </font> </p> </center>
+  </div>
+</body>
+</html>
